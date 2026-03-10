@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Application</title>
+</head>
+
+<body style="background:#111;color:white;font-family:Arial;text-align:center">
+
+<h1>Server Admin Application</h1>
+
+<form id="appForm">
+
+<p>Minecraft Username</p>
+<input type="text" id="mc"><br><br>
+
+<p>Discord Username</p>
+<input type="text" id="discord"><br><br>
+
+<p>Age</p>
+<input type="number" id="age"><br><br>
+
+<p>Why do you want to be admin?</p>
+<textarea id="reason"></textarea><br><br>
+
+<p>Staff Experience</p>
+<textarea id="exp"></textarea><br><br>
+
+<button type="submit">Submit Application</button>
+
+</form>
+
+<script>
+
+document.getElementById("appForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+var mc = document.getElementById("mc").value;
+var discord = document.getElementById("discord").value;
+var age = document.getElementById("age").value;
+var reason = document.getElementById("reason").value;
+var exp = document.getElementById("exp").value;
+
+fetch("https://discord.com/api/webhooks/1480958603920932995/KtiqkXio2xmauARF0N375BLlB-KmJRzsJRcP68Gs7DhYuH9BDfDgxu8YyYM5eA94uuxh", {
+method: "POST",
+headers: {"Content-Type":"application/json"},
+body: JSON.stringify({
+content:
+"📩 **New Admin Application**\n\n"+
+"MC Username: "+mc+"\n"+
+"Discord: "+discord+"\n"+
+"Age: "+age+"\n"+
+"Reason: "+reason+"\n"+
+"Experience: "+exp
+})
+});
+
+alert("Application Sent!");
+
+});
+
+</script>
+
+</body>
+</html>
